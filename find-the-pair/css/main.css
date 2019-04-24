@@ -1,0 +1,282 @@
+*{
+    margin: 0;
+    padding: 0;
+    font-family: 'Garamond', sans-serif;
+}
+
+.container {
+    background: url('../img/background.png');
+    background-size: cover;
+    background-position: center;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+h1 {
+    color: rgb(35, 15, 35);
+    margin: 5px;
+}
+
+p {
+    color: rgb(35, 15, 35);
+    margin: 10px 0 0 10px;
+}
+
+span {
+    font-weight: bold;
+    margin: 5px;
+}
+
+#menu {
+    display: flex;
+    margin: 0 10px 0 10px;
+}
+
+button{
+    width: 50px;
+    height: 50px;
+    background-size: contain;
+    background-color: rgba(0,0,0,0);
+    background-repeat: no-repeat;
+    margin: 0 10px 0 0;
+    border-radius: 10px;
+    cursor: pointer;
+    border: 0;
+    outline: none;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+#restart {
+    background-image: url("../img/restart.png");
+}
+
+#pause{
+    background-image: url("../img/pause.png");
+    margin-right: 0;
+}
+
+#restart:disabled, #pause:disabled {
+    opacity: 0.75;
+    cursor: default;
+}
+
+#timer {
+    width: auto;
+    height: 100%;
+    font-size: 1em;
+    font-weight: bold;
+    color: rgb(35, 15, 35);
+    margin: 5px;
+}
+
+#card-grid {
+    max-height: 90%;
+    width: 90vmin;
+    height: 90vmin;
+    background: linear-gradient(160deg, #cc374f 0%, #832750 100%);
+    padding: 15px;
+    margin: 10px;
+    border-radius: 10px;
+    box-shadow: 10px 10px 20px 0 rgba(42, 32, 45, 0.7);
+    display: flex;
+    flex-wrap: wrap;
+    user-select: none;
+    -webkit-user-drag: none;
+}
+
+.card {
+    position: relative;
+    cursor: pointer;
+    box-shadow: 5px 2px 10px 0 rgba(66, 50, 68, 0.7);
+    transition: transform 1s;
+    transform-style: preserve-3d; /*Вращение происходит в 3D.*/
+}
+
+.card-wrapper {
+    perspective: 1000px;
+    margin: 5px;
+    /* Длина и высота карточек будут вычисляться в зависимости
+    от размеров игровой сетки.*/
+}
+
+.card,
+.front, .back {
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+    position: absolute; /*Слои накладываются друг на друга.*/
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+.front {
+    backface-visibility: hidden; /*Скрываем обратную поверхность.*/
+    /*Изменяем стиль шрифта на случай, если картинка
+    не отобразится и будет отображён альтернативный текст*/
+    font-size: 40px;
+    text-align: center;
+    color: white;
+}
+
+.back{
+    background-color: rgb(60, 20, 65);
+}
+
+.close {
+    transform: rotateY(-180deg);
+}
+
+#modal-overlay {
+    width: 100%;
+    height: 100vh;
+    position: fixed;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(0, 0, 0, 0.7);
+    margin: 0;
+    padding: 0;
+}
+
+#victory-modal, #start-game-modal {
+    display: block;
+    position: relative;
+    width: auto;
+    height: auto;
+    text-align: center;
+    background-color: rgb(255, 220, 150);
+    border-radius: 10px;
+}
+
+#size-container{
+    margin: 0px 10px 10px 10px;
+    align-items: center;
+}
+
+.grid-size{
+    font-size: 2rem;
+    font-weight: bold;
+    width: 90px;
+    height: auto;
+    border-radius: 10px;
+    border: 0px;
+    margin: 5px;
+    background-color: rgb(255, 200, 100);
+    color: rgb(250, 170, 80);
+    cursor: pointer;
+    outline: none;
+}
+
+.selected{
+    background-color: rgb(60, 20, 60);
+    color: white;
+}
+
+.modal-title {
+    font-size: 2rem;
+    font-weight: bold;
+    color: rgb(60, 20, 65);
+    background-color: rgb(255, 200, 100);
+    border-radius: 10px 10px 0 0;
+    margin: 0;
+    padding: 10px;
+}
+
+.modal-body {
+    font-size: 1.5rem;
+    color: rgb(60, 20, 65);
+    margin: 0;
+    padding: 10px;
+}
+
+#play-again, #start-game {
+    width: 80%;
+    height: auto;
+    border-radius: 10px;
+    color: rgb(60, 20, 65);
+    background-color: rgb(255, 200, 100);
+    border-color: rgb(255, 200, 100);
+    font-size: 2.5rem;
+    font-weight: bold;
+    cursor: pointer;
+    margin: 10px;
+    outline: none;
+}
+
+/* Portrait tablets and small/medium desktops */
+@media (min-width: 992px) {
+    h1 {
+        font-size: 3.5rem;
+    }
+
+    button{
+        width: 50px;
+        height: 50px;
+    }
+
+    #menu, .modal-body {
+        font-size: 2rem;
+    }
+}
+
+/* Portrait tablets and small desktops */
+@media (min-width: 768px) and (max-width: 991px) {
+    h1, #menu {
+        font-size: 2rem;
+    }
+
+    p {
+        margin: 2px 0 0 10px;
+    }
+
+    button{
+        width: 40px;
+        height: 40px;
+    }
+}
+
+/* Landscape phones and portrait tablets */
+@media (max-width: 767px) {
+    h1, .modal-body {
+        font-size: 2rem;
+    }
+
+    #menu{
+        font-size: 1.2rem;
+    }
+
+    p {
+        margin: 7px 0 0 10px;
+    }
+
+    button{
+        width: 30px;
+        height: 30px;
+    }
+
+    #card-grid {
+        width: 85vmin;
+    }
+}
+
+/* Landscape phones and smaller */
+@media (max-width: 480px) {
+    #victory-modal, #start-game-modal {
+        width: 90vmin;
+    }
+
+    button{
+        width: 40px;
+        height: 40px;
+    }
+}
+
+/* Target device in portrait mode */
+@media all and (orientation: portrait) {
+    h1 {
+        margin-bottom: 20px;
+    }
+}
